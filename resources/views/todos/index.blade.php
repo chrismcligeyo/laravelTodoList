@@ -5,6 +5,13 @@
 
     <h1>Todos</h1>
 
+    @if(session()->has('success'))
+        <div class="alert alert-success">
+            {{session('success')}}
+        </div>    
+
+    @endif
+
     @if(count($todos) > 0)
 
         @foreach($todos as $todo)

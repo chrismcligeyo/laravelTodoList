@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TodosStoreRequest;
 use App\Todo;
 use Illuminate\Http\Request;
 
@@ -41,9 +42,26 @@ class TodosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TodosStoreRequest $request)
     {
         //
+
+//        $input = $request->all();
+//
+//        $todo = App\Todo::create($input);
+
+        $todo = new Todo;
+
+        $todo->text = $request->input('text');
+        $todo->body = $request->input('body');
+        $todo->due = $request->input('due');
+
+        $todo->save();
+
+        session()->flash('success', 'Todo Created');
+
+        return redirect('/');
+
 
     }
 
