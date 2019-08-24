@@ -21,7 +21,7 @@
             <th>Due</th>
               <th>Created</th>
               <th>Edit</th>
-              <th>Delete</th>
+
           </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@
             <td>{{$todo->due}}</td>
             <td>{{$todo->created_at->diffForHumans()}}</td>
               <td><a href="{{route('todo.edit', $todo->id)}}">Edit</a></td>
-              <td><a href="">Delete</a></td>
+
           </tr>
 
         </tbody>

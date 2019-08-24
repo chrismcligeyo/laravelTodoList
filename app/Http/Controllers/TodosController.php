@@ -123,5 +123,9 @@ class TodosController extends Controller
     public function destroy($id)
     {
         //
+        $todo = Todo::findOrFail($id)->delete();
+
+        session()->flash('success', 'Todo Deleted');
+        return redirect('/');
     }
 }
