@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TodosStoreRequest;
 use App\Todo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class TodosController extends Controller
 {
@@ -88,6 +89,8 @@ class TodosController extends Controller
     public function edit($id)
     {
         //
+        $todo =Todo::find($id);
+        return view('todos.edit',compact('todo'));
     }
 
     /**
@@ -100,6 +103,15 @@ class TodosController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $input = $request->all();
+
+        $todo = Todo::findOrFail($id);
+
+        $todo->update($input);
+
+        session()->flash('success', 'Todo Updated');
+
+        return redirect('/');
     }
 
     /**
